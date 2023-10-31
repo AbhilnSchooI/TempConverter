@@ -9,6 +9,7 @@ public class Main {
         boolean enteredTemp = true;
         boolean valid = true;
         double num = 0;
+        boolean go = true;
 
         do {
             System.out.println("Please enter a temperature in degrees C to be converted to degrees F:");
@@ -20,7 +21,7 @@ public class Main {
                 System.out.printf("\n%-10s %7.2f", "Degrees F:", tempF);
                 System.out.println();
             }else{
-                while(valid){
+                while(true){
                     if (scan.hasNextDouble()) {
                         tempC = scan.nextDouble();
                         tempF = (tempC * 9 / 5) + (32);
@@ -36,11 +37,16 @@ public class Main {
             }
 
             scan.nextLine();
-            System.out.println("do you want to continue? (Y/N)");
-            String keepGoing = scan.nextLine();
-
-            if(keepGoing.equalsIgnoreCase("N")){
-                enteredTemp = false;
+            while(go){
+                System.out.println("do you want to continue? (Y/N)");
+                String keepGoing = scan.nextLine();
+                if(keepGoing.equalsIgnoreCase("n")){
+                    enteredTemp = false;
+                    break;
+                }
+                if(keepGoing.equalsIgnoreCase("y")){
+                    break;
+                }
             }
 
         } while (enteredTemp);
